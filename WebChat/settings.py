@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     # external
     "drf_spectacular",
+    "drf_redesign",
     "rest_framework",
     # internal
     "account",
