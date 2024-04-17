@@ -24,6 +24,11 @@ class ServerListViewSet(viewsets.ViewSet):
 
         Args:
             request (Request): The request object containing query parameters.
+                - category (str, optional): Filter servers by category. Example: 'gaming'
+                - qty (int, optional): Limit the number of servers returned. Example: 5
+                - by_user (bool, optional): Filter servers by the current user's membership. Example: true
+                - by_serverid (int, optional): Filter servers by a specific server ID. Example: 1
+                - num_members (bool, optional): Include the number of members in each server. Example: true
 
         Returns:
             Response: A JSON response containing the serialized server data.
@@ -40,8 +45,8 @@ class ServerListViewSet(viewsets.ViewSet):
         with_num_members = request.query_params.get("num_members") == "true"
 
         # Check authentication for user-based filters
-        if by_user or by_serverid and not request.user.is_authenticated:
-            raise AuthenticationFailed(detail="Not authenticated")
+        # if by_user or by_serverid and not request.user.is_authenticated:
+        #     raise AuthenticationFailed(detail="Not authenticated")
 
         # Apply category filter if specified
         if category:
@@ -49,8 +54,11 @@ class ServerListViewSet(viewsets.ViewSet):
 
         # Apply user-based filter if specified
         if by_user:
-            user_id = request.user.id
-            self.queryset = self.queryset.filter(member=user_id)
+            if request.user.is_authenticated:
+                user_id = request.user.id
+                self.queryset = self.queryset.filter(member=user_id)
+            else:
+                raise AuthenticationFailed(detail="Authentication Failed")
 
         # Annotate queryset with the number of members if requested
         if with_num_members:
@@ -62,13 +70,16 @@ class ServerListViewSet(viewsets.ViewSet):
 
         # Apply server ID filter if specified
         if by_serverid:
-            try:
-                self.queryset = self.queryset.filter(id=by_serverid)
-                if not self.queryset.exists():
-                    raise ValidationError(detail=f"Server {by_serverid} not found")
+            if not request.user.is_authenticated:
+                raise AuthenticationFailed(detail="Authentication Failed")
+            else:
+                try:
+                    self.queryset = self.queryset.filter(id=by_serverid)
+                    if not self.queryset.exists():
+                        raise ValidationError(detail=f"Server {by_serverid} not found")
 
-            except ValueError:
-                raise ValidationError(detail=f"Server {by_serverid} not found")
+                except ValueError:
+                    raise ValidationError(detail=f"Server {by_serverid} not found")
 
         # Serialize queryset and return response
         serializer = ServerSerializer(
