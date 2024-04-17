@@ -1,0 +1,7 @@
+openapi: 3.0.3
+info:
+  title: WebChat API
+  version: 0.1.0
+  description: Backend API for WebChat
+paths: {}
+components: {}
