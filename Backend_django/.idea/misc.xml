@@ -5,5 +5,5 @@
     <option name="enabledOnSave" value="true" />
     <option name="sdkName" value="Python 3.12 (WebChat)" />
   </component>
-  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (WebChat)" project-jdk-type="Python SDK" />
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.12 (Backend_django)" project-jdk-type="Python SDK" />
 </project>
