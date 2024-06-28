@@ -1,9 +1,10 @@
 from django.db.models import Count
+from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.exceptions import ValidationError, AuthenticationFailed
 from rest_framework.response import Response
-from server.models import Server
-from .serializer import ServerSerializer
+from server.models import Server, Category
+from .serializer import ServerSerializer, CategorySerializer
 from .schema import server_list_docs
 
 
@@ -85,4 +86,29 @@ class ServerListViewSet(viewsets.ViewSet):
         serializer = ServerSerializer(
             self.queryset, many=True, context={"num_members": with_num_members}
         )
+        return Response(serializer.data)
+
+
+class CategoryListViewSet(viewsets.ViewSet):
+    """
+    A ViewSet for retrieving a list of server categories.
+
+    Attributes:
+        queryset (QuerySet): A queryset containing all ServerCategory objects.
+    """
+
+    queryset = Category.objects.all()
+
+    @extend_schema(responses=CategorySerializer)
+    def list(self, request):
+        """
+        Retrieves a list of server categories.
+
+        Args:
+            request (Request): The request object.
+
+        Returns:
+            Response: A JSON response containing the serialized category data.
+        """
+        serializer = CategorySerializer(self.queryset, many=True)
         return Response(serializer.data)

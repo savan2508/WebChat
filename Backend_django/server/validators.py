@@ -14,8 +14,18 @@ def validate_icon_image_size(image):
                 )
 
 
+def validate_banner_image_size(image):
+    if image:
+        with Image.open(image) as image:
+            if image.width > 3840 or image.height > 2160:
+                raise ValidationError(
+                    f"The maximum allowed dimension for the image are 3840x2160 - "
+                    f"size of the image you uploaded is {image.width}x{image.height}"
+                )
+
+
 def validate_image_file_extension(value):
-    ext = os.path.splitext(value)[1]
+    ext = os.path.splitext(value.name)[1]
     valid_extensions = [".jpg", ".jpeg", ".png", ".gif"]
     if ext not in valid_extensions:
         raise ValidationError(
