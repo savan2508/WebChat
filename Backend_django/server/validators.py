@@ -7,9 +7,9 @@ from django.core.exceptions import ValidationError
 def validate_icon_image_size(image):
     if image:
         with Image.open(image) as image:
-            if image.width > 70 or image.height > 70:
+            if image.width > 1925 or image.height > 1100:
                 raise ValidationError(
-                    f"The maximum allowed dimension for the image are 70x70 - "
+                    f"The maximum allowed dimension for the image are 1920 x 1080 - "
                     f"size of the image you uploaded is {image.width}x{image.height}"
                 )
 

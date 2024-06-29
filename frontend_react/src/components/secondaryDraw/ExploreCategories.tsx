@@ -78,6 +78,7 @@ export const ExploreCategories = () => {
                       variant="body1"
                       textAlign="start"
                       paddingLeft={1}
+                      textTransform={"capitalize"}
                     >
                       {server.name}
                     </Typography>

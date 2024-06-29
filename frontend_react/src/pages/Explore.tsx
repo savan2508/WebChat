@@ -7,7 +7,7 @@ import { PopularChannels } from "../components/primaryDraw/PopularChannels.tsx";
 import { ExploreCategories } from "../components/secondaryDraw/ExploreCategories.tsx";
 import { ExploreServers } from "../components/main/ExploreServers.tsx";
 
-export const Home = () => {
+export const Explore = () => {
   return (
     <>
       <Box sx={{ display: "flex" }}>

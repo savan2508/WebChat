@@ -1,7 +1,12 @@
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import React, { ReactNode } from "react";
 
-export const MainComponent = () => {
+type Props = {
+  children?: ReactNode;
+};
+
+export const MainComponent: React.FC<Props> = ({ children }) => {
   const theme = useTheme();
   return (
     <Box
@@ -23,12 +28,7 @@ export const MainComponent = () => {
         },
       }}
     >
-      MainComponent
-      {[...Array(100)].map((_, i) => (
-        <Box key={i} sx={{ padding: theme.spacing(2) }}>
-          {i}
-        </Box>
-      ))}
+      {children}
     </Box>
   );
 };

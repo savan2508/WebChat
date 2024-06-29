@@ -83,6 +83,7 @@ export const PopularChannels: React.FC<Props> = ({ open }) => {
                         textOverflow: "ellipsis",
                         overflow: "hidden",
                         whiteSpace: "nowrap",
+                        textTransform: "capitalize",
                       }}
                     >
                       {server.name}
@@ -97,6 +98,7 @@ export const PopularChannels: React.FC<Props> = ({ open }) => {
                         textOverflow: "ellipsis",
                         overflow: "hidden",
                         whiteSpace: "nowrap",
+                        textTransform: "capitalize",
                       }}
                     >
                       {server.category}
