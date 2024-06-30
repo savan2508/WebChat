@@ -11,7 +11,9 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useEffect, useState } from "react";
+import { ExploreCategories } from "../../components/secondaryDraw/ExploreCategories.tsx";
 
+// @ts-ignore
 export const PrimaryAppBar = () => {
   const theme = useTheme();
   const [sideMenu, setSideMenu] = useState(false);
@@ -23,10 +25,32 @@ export const PrimaryAppBar = () => {
     }
   }, [isSmallScreen]);
 
-  // @ts-ignore
-  const toggleDrawer = (open: boolean) => (event: React.MouseEvent) => {
-    setSideMenu(open);
-  };
+  const toggleDrawer =
+    (open: boolean) => (event: React.MouseEvent | React.KeyboardEvent) => {
+      if (
+        event &&
+        event.type === "keydown" &&
+        ((event as React.KeyboardEvent).key === "Tab" ||
+          (event as React.KeyboardEvent).key === "Shift")
+      ) {
+        return;
+      }
+      setSideMenu(open);
+    };
+
+  const list = () => (
+    <Box
+      sx={{
+        paddingTop: `${theme.primaryAppBar.height}px`,
+        minWidth: 200,
+      }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+    >
+      <ExploreCategories />
+    </Box>
+  );
 
   return (
     <>
@@ -56,11 +80,7 @@ export const PrimaryAppBar = () => {
             </IconButton>
           </Box>
           <Drawer anchor="left" open={sideMenu} onClose={toggleDrawer(false)}>
-            {[...Array(100)].map((_, i) => (
-              <Typography key={i} paragraph>
-                {i + 1}
-              </Typography>
-            ))}
+            {list()}
           </Drawer>
           <Link href="/" underline="none" color="ingerit">
             <Typography
