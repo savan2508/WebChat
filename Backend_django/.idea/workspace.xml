@@ -4,16 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="The new model change with banner and model">
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/PrimaryAppBar/AccountButton.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/PrimaryAppBar/DarkMode/DarkModeSwitch.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/context/ColorModeContext.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Add dark mode and uvicorn asgi server">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/ToggleColorMode/ToggleColorMode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/ToggleColorMode/ToggleColorMode.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/theme/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/theme/Theme.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebChat/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/asgi.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebChat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebChat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/urls.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +145,7 @@
       <workItem from="1719536477672" duration="29000" />
       <workItem from="1719536526354" duration="4132000" />
       <workItem from="1719669272490" duration="3930000" />
-      <workItem from="1720292525287" duration="4384000" />
+      <workItem from="1720292525287" duration="9554000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />
@@ -183,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1713383078631</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add dark mode and uvicorn asgi server">
+      <option name="closed" value="true" />
+      <created>1720323197880</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1720323197880</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,7 +201,8 @@
     <MESSAGE value="Add schema design for api calls." />
     <MESSAGE value="add media settings in  settings.py." />
     <MESSAGE value="The new model change with banner and model" />
-    <option name="LAST_COMMIT_MESSAGE" value="The new model change with banner and model" />
+    <MESSAGE value="Add dark mode and uvicorn asgi server" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add dark mode and uvicorn asgi server" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Backend_django$create_fake_data.coverage" NAME="create_fake_data Coverage Results" MODIFIED="1719635345341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
