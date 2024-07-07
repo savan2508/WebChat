@@ -6,9 +6,8 @@ import {
 } from "react-router-dom";
 import { Home } from "./pages/Home.tsx";
 import React from "react";
-import { ThemeProvider } from "@emotion/react";
-import { createMuiTheme } from "./theme/Theme.tsx";
 import { Explore } from "./pages/Explore.tsx";
+import { ToggleColorMode } from "./components/ToggleColorMode/ToggleColorMode.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,11 +19,10 @@ const router = createBrowserRouter(
 );
 
 const App: React.FC = () => {
-  const theme = createMuiTheme();
   return (
-    <ThemeProvider theme={theme}>
+    <ToggleColorMode>
       <RouterProvider router={router} />
-    </ThemeProvider>
+    </ToggleColorMode>
   );
 };
 

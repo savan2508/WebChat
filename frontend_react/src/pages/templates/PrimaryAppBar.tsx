@@ -12,8 +12,8 @@ import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import React, { useEffect, useState } from "react";
 import { ExploreCategories } from "../../components/secondaryDraw/ExploreCategories.tsx";
+import { AccountButton } from "../../components/PrimaryAppBar/AccountButton.tsx";
 
-// @ts-ignore
 export const PrimaryAppBar = () => {
   const theme = useTheme();
   const [sideMenu, setSideMenu] = useState(false);
@@ -92,6 +92,8 @@ export const PrimaryAppBar = () => {
               WebChat
             </Typography>
           </Link>
+          <Box sx={{ flexGrow: 1 }}></Box>
+          <AccountButton />
         </Toolbar>
       </AppBar>
     </>

@@ -23,6 +23,7 @@ interface Category {
 
 export const ExploreCategories = () => {
   const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
   const { dataCrud, error, isLoading, fetchData } = useCrud<Category>(
     [],
     "/server/category/",
@@ -62,13 +63,15 @@ export const ExploreCategories = () => {
             >
               <ListItemButton sx={{ minHeight: 48 }}>
                 <ListItemAvatar>
-                  <Avatar
+                  <img
+                    alt="Server icon"
                     src={`${MEDIA_URL}${server.icon}`}
-                    sx={{
+                    style={{
                       width: 24,
                       height: 24,
                       display: "block",
                       margin: "auto",
+                      filter: isDarkMode ? "invert(100%)" : "none",
                     }}
                   />
                 </ListItemAvatar>

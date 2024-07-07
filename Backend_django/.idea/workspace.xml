@@ -4,7 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="The new model change with banner and model" />
+    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="The new model change with banner and model">
+      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/PrimaryAppBar/AccountButton.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/PrimaryAppBar/DarkMode/DarkModeSwitch.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../frontend_react/src/context/ColorModeContext.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_react/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/ToggleColorMode/ToggleColorMode.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/ToggleColorMode/ToggleColorMode.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_react/src/theme/Theme.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/theme/Theme.tsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,7 +148,8 @@
       <workItem from="1719022217967" duration="53000" />
       <workItem from="1719536477672" duration="29000" />
       <workItem from="1719536526354" duration="4132000" />
-      <workItem from="1719669272490" duration="603000" />
+      <workItem from="1719669272490" duration="3930000" />
+      <workItem from="1720292525287" duration="4384000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />

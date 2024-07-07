@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c64595d4-e81c-4682-af8e-09f6032e9e0d" name="Changes" comment="Add frontend react application">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend_react/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend_react/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend_react/src/main.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend_react/src/main.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Backend_django/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Backend_django/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +48,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;data__generation__script&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;/home/savan/Documents/Projects/Python_project/PythonRepos/WebChat&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -76,8 +75,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PY-241.14494.241" />
-        <option value="bundled-python-sdk-0509580d9d50-28c9f5db9ffe-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.14494.241" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-PY-241.18034.82" />
+        <option value="bundled-python-sdk-975db3bf15a3-2767605e8bc2-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.18034.82" />
       </set>
     </attachedChunks>
   </component>
@@ -93,6 +92,8 @@
       <workItem from="1713489876490" duration="169000" />
       <workItem from="1713490098175" duration="93000" />
       <workItem from="1713490272814" duration="57000" />
+      <workItem from="1720292228797" duration="158000" />
+      <workItem from="1720292410446" duration="77000" />
     </task>
     <task id="LOCAL-00001" summary="Add frontend react application">
       <option name="closed" value="true" />
