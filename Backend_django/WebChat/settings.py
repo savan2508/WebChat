@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # internal
     "account",
     "server",
+    "chat_server.apps.ChatServerConfig",
 ]
 
 MIDDLEWARE = [
@@ -76,6 +77,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "WebChat.wsgi.application"
+
+ASGI_APPLICATION = "WebChat.asgi.application"
 
 
 # Database

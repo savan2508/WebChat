@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
+
+from chat_server.consumer import ChatConsumer
 from server.views import ServerListViewSet, CategoryListViewSet
 
 router = DefaultRouter()
@@ -19,7 +21,7 @@ urlpatterns = [
     ),
 ] + router.urls
 
-websockets_urlpatterns = []
+websockets_urlpatterns = [path("ws/test/", ChatConsumer.as_asgi())]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
