@@ -71,16 +71,16 @@ class ServerListViewSet(viewsets.ViewSet):
 
         # Apply server ID filter if specified
         if by_serverid:
-            if not request.user.is_authenticated:
-                raise AuthenticationFailed(detail="Authentication Failed")
-            else:
-                try:
-                    self.queryset = self.queryset.filter(id=by_serverid)
-                    if not self.queryset.exists():
-                        raise ValidationError(detail=f"Server {by_serverid} not found")
-
-                except ValueError:
+            # if not request.user.is_authenticated:
+            #     raise AuthenticationFailed(detail="Authentication Failed")
+            # else:
+            try:
+                self.queryset = self.queryset.filter(id=by_serverid)
+                if not self.queryset.exists():
                     raise ValidationError(detail=f"Server {by_serverid} not found")
+
+            except ValueError:
+                raise ValidationError(detail=f"Server {by_serverid} not found")
 
         # Serialize queryset and return response
         serializer = ServerSerializer(

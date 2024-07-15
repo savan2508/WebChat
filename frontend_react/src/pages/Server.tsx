@@ -1,44 +1,66 @@
-import useWebSocket from "react-use-websocket";
-import {useState} from "react";
-
-const socketUrl = 'ws://127.0.0.1:8000/ws/test/';
-
+import {Box, CssBaseline} from "@mui/material";
+import {PrimaryAppBar} from "./templates/PrimaryAppBar.tsx";
+import {PrimaryDraw} from "./templates/PrimaryDraw.tsx";
+import {SecondaryDraw} from "./templates/SecondaryDraw.tsx";
+import {MainComponent} from "./templates/MainComponent.tsx";
+import {MessageInterface} from "../components/main/MessageInterface.tsx";
+import {ServerChannels} from "../components/secondaryDraw/ServerChannels.tsx";
+import {UserServers} from "../components/primaryDraw/UserServers.tsx";
+import {useNavigate, useParams} from "react-router-dom";
+import useCrud from "../hooks/useCrud.ts";
+import {ServerD} from "../@types/serverD.ts";
+import {useEffect} from "react";
 
 export const Server = () => {
-    const [message, setMessage] = useState('Initial Message');
-    const [inputValue, setInputValue] = useState("")
+	const navigate = useNavigate();
+	const {serverId, channelId} = useParams();
 
-    const {sendJsonMessage} = useWebSocket(socketUrl, {
-        onOpen: () => {
-            console.log('Connection Opened')
-        },
-        onClose: () => {
-            console.log('Connection Closed')
-        },
-        onError: (event) => {
-            console.log('Error:', event)
-        },
-        onMessage: (event) => {
-            console.log('Message:', event)
-            setMessage(event.data);
-        }
-    });
+	const {dataCrud, fetchData, error, isLoading} = useCrud<ServerD>(
+		[],
+		`/server/select/?by_serverid=${serverId}`,
+	);
 
-    const sendHello = () => {
-        sendJsonMessage({message: inputValue});
-        console.log("pressed")
-        setInputValue("")
-    }
+	useEffect(() => {
+		fetchData();
+	}, []);
 
-    return (
-        <>
-            <div>
-                <input type={'text'} value={inputValue} onChange={(e) => setInputValue(e.target.value)}/>
-                <button onClick={sendHello}>Send</button>
-                <div>
-                    <h2>Received Data: {message}</h2>
-                </div>
-            </div>
-        </>
-    );
+
+	// Check if the channelId is valid by searching for it in the data fetched from the API
+	const isChannel = (): boolean => {
+		if (!channelId) return false
+
+		return dataCrud.some((server) =>
+			server.server_channel.some(
+				(channel) => channel.id === parseInt(channelId),
+			));
+	}
+
+	useEffect(() => {
+		if (!isChannel()) {
+			navigate(`/server/${serverId}`);
+		}
+	}, [channelId]);
+
+	if (error !== null && error.message === "400") {
+		navigate("/")
+		return null
+	}
+
+	return (
+		<>
+			<Box sx={{display: "flex"}}>
+				<CssBaseline/>
+				<PrimaryAppBar/>
+				<PrimaryDraw>
+					<UserServers open={false} data={dataCrud}/>
+				</PrimaryDraw>
+				<SecondaryDraw>
+					<ServerChannels data={dataCrud}/>
+				</SecondaryDraw>
+				<MainComponent>
+					<MessageInterface/>
+				</MainComponent>
+			</Box>
+		</>
+	);
 };
