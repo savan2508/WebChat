@@ -21,8 +21,15 @@ export const MessageInterface = () => {
 
 	const [inputValue, setInputValue] = useState("")
 	const {sendJsonMessage} = useWebSocket(socketUrl, {
-		onOpen: () => {
-			console.log('Connection Opened')
+		onOpen: async () => {
+			try {
+				const data = await fetchData();
+				setNewMessage([]);
+				setNewMessage(Array.isArray(data) ? data : []);
+				console.log("Connection Opened")
+			} catch (e) {
+				console.error("Error:", e)
+			}
 		},
 		onClose: () => {
 			console.log('Connection Closed')
