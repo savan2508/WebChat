@@ -5,27 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Create model for the chat and messages conversation">
-      <change afterPath="$PROJECT_DIR$/chat_server/migrations/0001_initial.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/@types/serverD.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/MessageInterface.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/primaryDraw/UserServers.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/secondaryDraw/ServerChannels.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/40f823dd-14b7-4958-b0a4-c163a627ee93.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/40f823dd-14b7-4958-b0a4-c163a627ee93.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat_server/schema.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/chat_server/serializer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebChat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat_server/consumer.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server/consumer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat_server/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/server/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/main/ExploreServers.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/ExploreServers.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/primaryDraw/PopularChannels.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/primaryDraw/PopularChannels.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/secondaryDraw/ExploreCategories.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/secondaryDraw/ExploreCategories.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/helper/jwtinterceptor.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/helper/jwtinterceptor.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/hooks/useCrud.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/hooks/useCrud.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/Home.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/Home.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/Server.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/Server.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/templates/PrimaryAppBar.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_server/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/chat_server/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +168,8 @@
       <workItem from="1720735359575" duration="155000" />
       <workItem from="1720735528670" duration="22031000" />
       <workItem from="1720994831398" duration="54000" />
-      <workItem from="1720994895646" duration="10718000" />
+      <workItem from="1720994895646" duration="11351000" />
+      <workItem from="1721096034892" duration="3371000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />
@@ -241,7 +227,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721016479806</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Create model for the chat and messages conversation">
+      <option name="closed" value="true" />
+      <created>1721016491519</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1721016491519</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
