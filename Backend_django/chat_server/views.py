@@ -9,11 +9,16 @@ from chat_server.serializer import MessageSerializer
 
 # Create your views here.
 class MessageViewSet(viewsets.ViewSet):
+
     @list_message_docs
     def list(self, request):
         channel_id = request.query_params.get("channel_id")
-        conversation = Conversation.objects.get(channel_id=channel_id)
-        messages = conversation.messages.all()
 
-        serializer = MessageSerializer(messages, many=True)
-        return Response(serializer.data)
+        try:
+            conversation = Conversation.objects.get(channel_id=channel_id)
+            messages = conversation.messages.all()
+            serializer = MessageSerializer(messages, many=True)
+            return Response(serializer.data)
+
+        except Conversation.DoesNotExist:
+            return Response([], status=404)

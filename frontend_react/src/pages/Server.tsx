@@ -58,7 +58,7 @@ export const Server = () => {
 					<ServerChannels data={dataCrud}/>
 				</SecondaryDraw>
 				<MainComponent>
-					<MessageInterface/>
+					<MessageInterface data={dataCrud}/>
 				</MainComponent>
 			</Box>
 		</>
