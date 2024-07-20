@@ -6,11 +6,12 @@ import {ServerD} from "../../@types/serverD.ts";
 import {Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography} from "@mui/material";
 import {MessageInterfaceChannel} from "./MessageInterfaceChannel.tsx";
 import {useTheme} from "@mui/material/styles";
+import {Scroll} from "./Scroll.tsx";
 
 interface Message {
 	sender: string;
 	content: string;
-	timestamp: string;
+	created_at: string;
 }
 
 interface ServerChannelProps {
@@ -24,6 +25,17 @@ interface SendMessageData {
 	[key: string]: any;
 }
 
+interface IncomingMessage {
+	id: number;
+	sender: string;
+	content: string;
+	created_at: string;
+}
+
+interface MessageServerResponse {
+	data: IncomingMessage[];
+}
+
 
 export const MessageInterface = (props: ServerChannelProps) => {
 	const {data} = props;
@@ -32,7 +44,7 @@ export const MessageInterface = (props: ServerChannelProps) => {
 	const [message, setMessage] = useState('');
 	const {serverId, channelId} = useParams();
 	const server_name = data?.[0]?.name ?? "Server";
-	const {fetchData} = useCrud<ServerD>([], `/messages/?channel_id=${channelId}`);
+	const {fetchData} = useCrud<MessageServerResponse>([], `/messages/?channel_id=${channelId}`);
 
 
 	const socketUrl = channelId ? `ws://127.0.0.1:8000/${serverId}/${channelId}` : null;
@@ -42,7 +54,7 @@ export const MessageInterface = (props: ServerChannelProps) => {
 			try {
 				const data = await fetchData();
 				setNewMessage([]);
-				setNewMessage(Array.isArray(data) ? data : []);
+				setNewMessage(Array.isArray(data.data) ? data.data : []);
 				console.log("Connection Opened")
 			} catch (e) {
 				console.error("Error:", e)
@@ -74,6 +86,13 @@ export const MessageInterface = (props: ServerChannelProps) => {
 		setMessage('');
 	}
 
+	function formatTimeStamp(timestamp: string): string {
+		const date = new Date(Date.parse(timestamp));
+		const formatedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+		const formatedTime = date.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit', hour12: false});
+		return `${formatedDate} at ${formatedTime}`;
+	}
+
 	return (
 		<>
 			<MessageInterfaceChannel data={data}/>
@@ -98,43 +117,49 @@ export const MessageInterface = (props: ServerChannelProps) => {
 			) : (
 				<>
 					<Box sx={{overflow: "hidden", p: 0, height: `cals(100vh - 100px)`}}>
-						<List sx={{width: "100%", bgcolor: "background.paper"}}>
+						<Scroll>
+							<List sx={{width: "100%", bgcolor: "background.paper"}}>
 
-							{newMessage.map((msg: Message, index: number) => (
-								<ListItem key={index} alignItems="flex-start">
-									<ListItemAvatar>
-										<Avatar alt="user image"/>
-									</ListItemAvatar>
-									<ListItemText
-										primaryTypographyProps={{fontSize: "12px", variant: "body2"}}
-										primary={
-											<Typography
-												component="span"
-												variant="body1"
-												color="text.primary"
-												sx={{display: "inline", fontW: 600}}
-											>
-												{msg.sender}
-											</Typography>
-										}
-										secondary={
-											<Box>
-												<Typography
-													variant="body1"
-													style={{overflow: "visible", whiteSpace: "normal", textOverflow: "clip",}}
-													sx={{display: "inline", lineHeight: 1.2, fontWeight: 400, letterSpacing: "-0.2px",}}
-													component="span"
-													color="text.primary"
-												>
-													{msg.content}
-												</Typography>
-											</Box>
-										}
-									/>
-								</ListItem>
-							))}
+								{newMessage.map((msg: Message, index: number) => (
+									<ListItem key={index} alignItems="flex-start">
+										<ListItemAvatar>
+											<Avatar alt="user image"/>
+										</ListItemAvatar>
+										<ListItemText
+											primaryTypographyProps={{fontSize: "12px", variant: "body2"}}
+											primary={
+												<>
+													<Typography
+														component="span"
+														variant="body1"
+														color="text.primary"
+														sx={{display: "inline", fontW: 600}}
+													>
+														{msg.sender}{" at "}{formatTimeStamp(msg.created_at)}
+													</Typography>
+													<Typography component="span" variant="caption" color="textSecondary">
+													</Typography>
+												</>
+											}
+											secondary={
+												<>
+													<Typography
+														variant="body1"
+														style={{overflow: "visible", whiteSpace: "normal", textOverflow: "clip",}}
+														sx={{display: "inline", lineHeight: 1.2, fontWeight: 400, letterSpacing: "-0.2px",}}
+														component="span"
+														color="text.primary"
+													>
+														{msg.content}
+													</Typography>
+												</>
+											}
+										/>
+									</ListItem>
+								))}
 
-						</List>
+							</List>
+						</Scroll>
 					</Box>
 					<Box sx={{position: "sticky", bottom: 0, width: "100%"}}>
 						<form

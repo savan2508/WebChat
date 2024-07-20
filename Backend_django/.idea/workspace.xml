@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Add api calls to MessageInterface">
+      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/Scroll.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/asgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/chat_server/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/chat_server/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebChat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebChat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/main/MessageInterface.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/MessageInterface.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/pages/Server.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/pages/Server.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +174,7 @@
       <workItem from="1721323244374" duration="959000" />
       <workItem from="1721324446010" duration="601000" />
       <workItem from="1721414847343" duration="109000" />
-      <workItem from="1721414987085" duration="909000" />
+      <workItem from="1721414987085" duration="15127000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />
