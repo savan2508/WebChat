@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Add api calls to MessageInterface">
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/Scroll.tsx" afterDir="false" />
+    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Update messageInterface to have chat box">
+      <change afterPath="$PROJECT_DIR$/../frontend_react/src/pages/Login.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/main/MessageInterface.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/main/MessageInterface.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend_react/src/components/primaryDraw/PopularChannels.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/components/primaryDraw/PopularChannels.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -174,7 +171,8 @@
       <workItem from="1721323244374" duration="959000" />
       <workItem from="1721324446010" duration="601000" />
       <workItem from="1721414847343" duration="109000" />
-      <workItem from="1721414987085" duration="15127000" />
+      <workItem from="1721414987085" duration="15732000" />
+      <workItem from="1721493071284" duration="2732000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />
@@ -256,7 +254,15 @@
       <option name="project" value="LOCAL" />
       <updated>1721102637831</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Update messageInterface to have chat box">
+      <option name="closed" value="true" />
+      <created>1721453632152</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1721453632152</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -285,7 +291,8 @@
     <MESSAGE value="Include the server component and add chat server" />
     <MESSAGE value="Create model for the chat and messages conversation" />
     <MESSAGE value="Add api calls to MessageInterface" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add api calls to MessageInterface" />
+    <MESSAGE value="Update messageInterface to have chat box" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update messageInterface to have chat box" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Backend_django$create_fake_data.coverage" NAME="create_fake_data Coverage Results" MODIFIED="1719635345341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
