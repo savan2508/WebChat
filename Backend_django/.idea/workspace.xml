@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Update messageInterface to have chat box">
-      <change afterPath="$PROJECT_DIR$/account/schema.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/account/serializers.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../frontend_react/src/services/ProtectedRoute.tsx" afterDir="false" />
+    <list default="true" id="31246788-0690-4c56-a79c-4ca059e6df85" name="Changes" comment="Add authorization">
+      <change afterPath="$PROJECT_DIR$/account/authenticate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebChat/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/WebChat/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/account/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/account/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/@types/auth-serviceD.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/@types/auth-serviceD.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend_react/src/dev/previews.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/dev/previews.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend_react/src/services/AuthServices.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend_react/src/services/AuthServices.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,7 +176,7 @@
       <workItem from="1721493071284" duration="3731000" />
       <workItem from="1721527548289" duration="35000" />
       <workItem from="1721527606005" duration="4479000" />
-      <workItem from="1721570929905" duration="17444000" />
+      <workItem from="1721570929905" duration="19742000" />
     </task>
     <task id="LOCAL-00001" summary="Add account and server application">
       <option name="closed" value="true" />
@@ -272,7 +266,23 @@
       <option name="project" value="LOCAL" />
       <updated>1721453632152</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add authorization">
+      <option name="closed" value="true" />
+      <created>1721627929180</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1721627929180</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Add authorization">
+      <option name="closed" value="true" />
+      <created>1721627945766</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1721627945766</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +312,8 @@
     <MESSAGE value="Create model for the chat and messages conversation" />
     <MESSAGE value="Add api calls to MessageInterface" />
     <MESSAGE value="Update messageInterface to have chat box" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update messageInterface to have chat box" />
+    <MESSAGE value="Add authorization" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add authorization" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Backend_django$create_fake_data.coverage" NAME="create_fake_data Coverage Results" MODIFIED="1719635345341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

@@ -12,26 +12,26 @@ export function useAuthService(): AuthServiceProps {
 		}
 	})
 
-	const getUserDetails = async () => {
-		try {
-			const userId = localStorage.getItem("userId");
-			const accessToken = localStorage.getItem("access_token");
-			const response = await axios.get(
-				`http://127.0.0.1:8000/api/user/?user_id=${userId}`, {
-					headers: {
-						Authorization: `Bearer ${accessToken}`
-					}
-				}
-			)
-			const userDetails = response.data;
-			localStorage.setItem("userDetails", JSON.stringify(userDetails));
-			localStorage.setItem("isLoggedIn", "true");
-		} catch (error: any) {
-			setIsLoggedIn(false);
-			console.log(error);
-			localStorage.setItem("isLoggedIn", "false");
-		}
-	}
+	// const getUserDetails = async () => {
+	// 	try {
+	// 		const userId = localStorage.getItem("userId");
+	// 		const accessToken = localStorage.getItem("access_token");
+	// 		const response = await axios.get(
+	// 			`http://127.0.0.1:8000/api/user/?user_id=${userId}`, {
+	// 				headers: {
+	// 					Authorization: `Bearer ${accessToken}`
+	// 				}
+	// 			}
+	// 		)
+	// 		const userDetails = response.data;
+	// 		localStorage.setItem("userDetails", JSON.stringify(userDetails));
+	// 		localStorage.setItem("isLoggedIn", "true");
+	// 	} catch (error: any) {
+	// 		setIsLoggedIn(false);
+	// 		console.log(error);
+	// 		localStorage.setItem("isLoggedIn", "false");
+	// 	}
+	// }
 
 	const getUserIDFromToken = (token: string) => {
 		const tokenParts = token.split('.');
@@ -45,19 +45,13 @@ export function useAuthService(): AuthServiceProps {
 	const login = async (username: string, password: string) => {
 		try {
 			const response = await axios.post(
-				"http://127.0.0.1:8000/api/token/", {
-					username,
-					password
-				}, {withCredentials: true}
+				"http://127.0.0.1:8000/api/token/", {withCredentials: true}
 			);
+			localStorage.setItem("isLoggedIn", "true");
 
-			const {access, refresh} = response.data;
-			localStorage.setItem("access_token", access);
-			localStorage.setItem("refresh_token", refresh);
-			localStorage.setItem("userId", getUserIDFromToken(access));
 			setIsLoggedIn(true);
 
-			getUserDetails();
+			// getUserDetails();
 
 		} catch (error: any) {
 			return error;
@@ -65,10 +59,6 @@ export function useAuthService(): AuthServiceProps {
 	}
 
 	const logout = () => {
-		localStorage.removeItem("access_token");
-		localStorage.removeItem("refresh_token");
-		localStorage.removeItem("userId");
-		localStorage.removeItem("userDetails");
 		localStorage.setItem("isLoggedIn", "false");
 		setIsLoggedIn(false);
 	}
