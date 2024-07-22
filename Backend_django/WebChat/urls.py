@@ -5,6 +5,11 @@ from django.urls import path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
 from rest_framework.routers import DefaultRouter
 
+from account.views import (
+    AccountViewSet,
+    # JWTCookieTokenRefreshView,
+    JWTCookieTokenObtainPairView,
+)
 from chat_server.consumer import WebChatConsumer
 from chat_server.views import MessageViewSet
 from server.views import ServerListViewSet, CategoryListViewSet
@@ -18,6 +23,7 @@ router = DefaultRouter()
 router.register("api/server/select", ServerListViewSet)
 router.register("api/server/category", CategoryListViewSet)
 router.register("api/messages", MessageViewSet, basename="messages")
+router.register("api/user", AccountViewSet, basename="user")
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -26,7 +32,9 @@ urlpatterns = [
         "api/docs/schema/ui/",
         SpectacularSwaggerView.as_view(),
     ),
-    path("api/token/", TokenObtainPairView.as_view(), name="token_obtain_pair"),
+    path(
+        "api/token/", JWTCookieTokenObtainPairView.as_view(), name="token_obtain_pair"
+    ),
     path("api/token/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
 ] + router.urls
 
