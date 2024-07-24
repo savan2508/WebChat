@@ -12,46 +12,40 @@ export function useAuthService(): AuthServiceProps {
 		}
 	})
 
-	// const getUserDetails = async () => {
-	// 	try {
-	// 		const userId = localStorage.getItem("userId");
-	// 		const accessToken = localStorage.getItem("access_token");
-	// 		const response = await axios.get(
-	// 			`http://127.0.0.1:8000/api/user/?user_id=${userId}`, {
-	// 				headers: {
-	// 					Authorization: `Bearer ${accessToken}`
-	// 				}
-	// 			}
-	// 		)
-	// 		const userDetails = response.data;
-	// 		localStorage.setItem("userDetails", JSON.stringify(userDetails));
-	// 		localStorage.setItem("isLoggedIn", "true");
-	// 	} catch (error: any) {
-	// 		setIsLoggedIn(false);
-	// 		console.log(error);
-	// 		localStorage.setItem("isLoggedIn", "false");
-	// 	}
-	// }
-
-	const getUserIDFromToken = (token: string) => {
-		const tokenParts = token.split('.');
-		const encodedPayload = tokenParts[1];
-		const decodedPayload = atob(encodedPayload);
-		const payLoadData = JSON.parse(decodedPayload);
-		return payLoadData.user_id;
+	const getUserDetails = async () => {
+		try {
+			const userId = localStorage.getItem("userId");
+			const response = await axios.get(
+				`http://127.0.0.1:8000/api/user/?user_id=${userId}`, {
+					withCredentials: true,
+				}
+			)
+			const userDetails = response.data;
+			localStorage.setItem("username", JSON.stringify(userDetails));
+			setIsLoggedIn(true);
+		} catch (error: any) {
+			setIsLoggedIn(false);
+			console.log(error);
+			localStorage.setItem("isLoggedIn", "false");
+		}
 	}
 
 
 	const login = async (username: string, password: string) => {
 		try {
 			const response = await axios.post(
-				"http://127.0.0.1:8000/api/token/", {withCredentials: true}
+				"http://127.0.0.1:8000/api/token/", {
+					username: username,
+					password: password,
+				},
 			);
+			const userId = response.data.user_id;
+			localStorage.setItem("userId", userId);
 			localStorage.setItem("isLoggedIn", "true");
 
 			setIsLoggedIn(true);
 
-			// getUserDetails();
+			getUserDetails();
 
 		} catch (error: any) {
 			return error;
@@ -60,6 +54,8 @@ export function useAuthService(): AuthServiceProps {
 
 	const logout = () => {
 		localStorage.setItem("isLoggedIn", "false");
+		localStorage.removeItem("userId");
+		localStorage.removeItem("username");
 		setIsLoggedIn(false);
 	}
 

@@ -17,10 +17,11 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "WebChat.settings")
 django_application = get_asgi_application()
 
 from . import urls  # noqa isort:skip
+from chat_server.middleware import JWTAuthMiddleware  # noqa isort:skip
 
 application = ProtocolTypeRouter(
     {
         "http": get_asgi_application(),
-        "websocket": URLRouter(urls.websockets_urlpatterns),
+        "websocket": JWTAuthMiddleware(URLRouter(urls.websockets_urlpatterns)),
     }
 )
