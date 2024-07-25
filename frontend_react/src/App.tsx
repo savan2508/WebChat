@@ -10,6 +10,8 @@ import {Login} from "./pages/Login.tsx";
 import {AuthServiceProvider} from "./context/AuthContext.tsx";
 import {ProtectedRoute} from "./services/ProtectedRoute.tsx";
 import {Register} from "./pages/Register.tsx";
+import {MembershipProvider} from "./context/MemberContext.tsx";
+import {MembershipCheck} from "./components/Membership/MembershipCheck.tsx";
 
 
 const App: React.FC = () => {
@@ -21,7 +23,11 @@ const App: React.FC = () => {
 						<Route path="/" element={<Home/>}/>
 						<Route path="/server/:serverId/:channelId?" element={
 							<ProtectedRoute>
-								<Server/>
+								<MembershipProvider>
+									<MembershipCheck>
+										<Server/>
+									</MembershipCheck>
+								</MembershipProvider>
 							</ProtectedRoute>
 						}/>
 						<Route path="/explore/:categoryName" element={<Explore/>}/>

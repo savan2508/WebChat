@@ -1,5 +1,7 @@
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -13,6 +15,60 @@ from account.serializers import (
     JWTCookieTokenRefreshSerialized,
     RegisterSerializer,
 )
+from server.models import Server
+
+
+class ServerMembershipViewSet(viewsets.ViewSet):
+    permission_classes = [IsAuthenticated]
+
+    def create(self, request, server_id):
+        server = get_object_or_404(Server, id=server_id)
+        user = request.user
+
+        if server.member.filter(id=user.id).exists():
+            return Response(
+                {"error": "User is a member of this server"},
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        server.member.add(user)
+
+        return Response(
+            {"message": "User have joined the server"}, status=status.HTTP_201_CREATED
+        )
+
+    @action(detail=False, methods=["DELETE"])
+    def remove_member(self, request, server_id):
+        server = get_object_or_404(Server, id=server_id)
+        user = request.user
+
+        if not server.member.filter(id=user.id).exists():
+            return Response(
+                {"error": "User is not a member of this server"},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        if server.owner == user:
+            return Response(
+                {"error": "Owner cannot leave the server"},
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        server.member.remove(user)
+
+        return Response(
+            {"message": "User have been removed from the server"},
+            status=status.HTTP_200_OK,
+        )
+
+    @action(detail=False, methods=["GET"])
+    def is_member(self, request, server_id):
+        server = get_object_or_404(Server, id=server_id)
+        user = request.user
+
+        is_member = server.member.filter(id=user.id).exists()
+
+        return Response({"is_member": is_member})
 
 
 class RegisterView(APIView):

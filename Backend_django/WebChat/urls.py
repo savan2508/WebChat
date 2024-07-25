@@ -11,6 +11,7 @@ from account.views import (
     JWTCookieTokenObtainPairView,
     LogOutAPIView,
     RegisterView,
+    ServerMembershipViewSet,
 )
 from chat_server.consumer import WebChatConsumer
 from chat_server.views import MessageViewSet
@@ -22,6 +23,11 @@ router.register("api/server/select", ServerListViewSet)
 router.register("api/server/category", CategoryListViewSet)
 router.register("api/messages", MessageViewSet, basename="messages")
 router.register("api/account", AccountViewSet, basename="account")
+router.register(
+    r"api/membership/(?P<server_id>\d+)/membership",
+    ServerMembershipViewSet,
+    basename="server-membership",
+)
 
 urlpatterns = [
     path("admin/", admin.site.urls),
