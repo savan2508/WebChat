@@ -2,7 +2,6 @@ from datetime import timedelta
 from pathlib import Path
 import os
 
-from django.contrib import staticfiles
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -44,7 +43,7 @@ INSTALLED_APPS = [
     # internal
     "account",
     "server",
-    "chat_server.apps.ChatServerConfig",
+    "chat_server",
 ]
 
 MIDDLEWARE = [
@@ -79,8 +78,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "WebChat.wsgi.application"
 
-ASGI_APPLICATION = "WebChat.asgi.application"
-
+# ASGI_APPLICATION = "WebChat.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -149,7 +147,6 @@ REST_FRAMEWORK = {
 SPECTACULAR_SETTINGS = {
     "TITLE": "WebChat API",
     "DESCRIPTION": "Backend API for WebChat",
-    "EXCLUDED_APPS": [],
     "VERSION": "0.1.0",
     "SERVE_INCLUDE_SCHEME": False,
 }

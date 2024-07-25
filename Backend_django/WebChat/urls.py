@@ -19,7 +19,7 @@ router = DefaultRouter()
 router.register("api/server/select", ServerListViewSet)
 router.register("api/server/category", CategoryListViewSet)
 router.register("api/messages", MessageViewSet, basename="messages")
-router.register("api/user", AccountViewSet, basename="user")
+router.register("api/account", AccountViewSet, basename="account")
 
 urlpatterns = [
     path("admin/", admin.site.urls),

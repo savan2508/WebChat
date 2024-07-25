@@ -9,11 +9,16 @@ from django.contrib.auth.models import AnonymousUser
 def get_user(scope):
     token = scope["token"]
     model = get_user_model()
-    user_id = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])["user_id"]
 
     try:
-        return model.objects.get(id=user_id)
-    except model.DoesNotExist:
+        if token:
+            user_id = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])[
+                "user_id"
+            ]
+            return model.objects.get(id=user_id)
+        else:
+            return AnonymousUser()
+    except (model.DoesNotExist, jwt.exceptions.DecodeError):
         return AnonymousUser()
 
 
@@ -23,11 +28,11 @@ class JWTAuthMiddleware:
         self.app = app
 
     async def __call__(self, scope, receive, send):
-        headers_dic = dict(scope["headers"])
-        cookies_string = headers_dic.get(b"cookie", b"").decode("utf-8")
+        headers_dict = dict(scope["headers"])
+        cookies_str = headers_dict.get(b"cookie", b"").decode()
         cookies = {
-            cookies_string.split("=")[0]: cookie.split("=")[1]
-            for cookie in cookies_string.split("; ")
+            cookie.split("=")[0]: cookie.split("=")[1]
+            for cookie in cookies_str.split("; ")
         }
         access_token = cookies.get("access_token")
 

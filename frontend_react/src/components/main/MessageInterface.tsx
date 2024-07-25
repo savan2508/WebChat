@@ -1,18 +1,12 @@
-import useWebSocket from "react-use-websocket";
-import React, {useState} from "react";
+import React from "react";
 import {useParams} from "react-router-dom";
-import useCrud from "../../hooks/useCrud.ts";
 import {ServerD} from "../../@types/serverD.ts";
 import {Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, TextField, Typography} from "@mui/material";
 import {MessageInterfaceChannel} from "./MessageInterfaceChannel.tsx";
-import {useTheme} from "@mui/material/styles";
+import {useTheme} from "@mui/material";
 import {Scroll} from "./Scroll.tsx";
+import {Message, useChatWebSocket} from "../../services/chatService.ts";
 
-interface Message {
-	sender: string;
-	content: string;
-	created_at: string;
-}
 
 interface ServerChannelProps {
 	data: ServerD[];
@@ -25,52 +19,16 @@ interface SendMessageData {
 	[key: string]: any;
 }
 
-interface IncomingMessage {
-	id: number;
-	sender: string;
-	content: string;
-	created_at: string;
-}
-
-interface MessageServerResponse {
-	data: IncomingMessage[];
-}
-
 
 export const MessageInterface = (props: ServerChannelProps) => {
 	const {data} = props;
-	const [newMessage, setNewMessage] = useState<Message[]>([]);
+
 	const theme = useTheme();
-	const [message, setMessage] = useState('');
+
 	const {serverId, channelId} = useParams();
+	const {sendJsonMessage, newMessage, message, setMessage} = useChatWebSocket(channelId || "", serverId || "");
 	const server_name = data?.[0]?.name ?? "Server";
-	const {fetchData} = useCrud<MessageServerResponse>([], `/messages/?channel_id=${channelId}`);
 
-
-	const socketUrl = channelId ? `ws://127.0.0.1:8000/${serverId}/${channelId}` : null;
-
-	const {sendJsonMessage} = useWebSocket(socketUrl, {
-		onOpen: async () => {
-			try {
-				const data = await fetchData();
-				setNewMessage([]);
-				setNewMessage(Array.isArray(data.data) ? data.data : []);
-				console.log("Connection Opened")
-			} catch (e) {
-				console.error("Error:", e)
-			}
-		},
-		onClose: () => {
-			console.log('Connection Closed')
-		},
-		onError: (event) => {
-			console.log('Error:', event)
-		},
-		onMessage: (msg) => {
-			const data = JSON.parse(msg.data);
-			setNewMessage((currMsgs) => [...currMsgs, data.message]);
-		}
-	});
 
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === "Enter") {

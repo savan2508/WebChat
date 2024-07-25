@@ -15,13 +15,12 @@ class WebChatConsumer(JsonWebsocketConsumer):
         self.user = None
 
     def connect(self):
-
         self.user = self.scope["user"]
-        if not self.user.is_authenticated:
-            self.close()
-            return 
-
         self.accept()
+        if not self.user.is_authenticated:
+            self.close(code=4001)
+            return
+
         self.channel_id = self.scope["url_route"]["kwargs"]["channelId"]
 
         # TODO: Implement a check for the user's permissions to join the channel

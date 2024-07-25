@@ -43,12 +43,9 @@ class JWTSetCookieMixin:
                 httponly=True,
                 samesite=settings.SIMPLE_JWT["JWT_COOKIE_SAMESITE"],
             )
-
-        user_id = request.user.id
-        response.data["user_id"] = user_id
-        print(response.data)
-
-        del response.data["access"]
+            # user_id = request.user.id
+            # response.data["user_id"] = user_id
+            # del response.data["access"]
 
         return super().finalize_response(request, response, *args, **kwargs)
 
