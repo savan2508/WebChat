@@ -3,8 +3,8 @@ import {useFormik} from "formik";
 import {Box, Button, Container, TextField} from "@mui/material";
 import {useAuthServiceContext} from "../context/AuthContext.tsx";
 
-export const Login = () => {
-	const {login} = useAuthServiceContext();
+export const Register = () => {
+	const {register} = useAuthServiceContext();
 	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
@@ -23,16 +23,20 @@ export const Login = () => {
 		},
 		onSubmit: async (values) => {
 			const {username, password} = values;
-			const status = await login(username, password);
+			const status = await register(username, password);
 			console.log(status.response.status)
-			if (status.response.status === 401) {
+			if (status.response.status === 409) {
+				formik.setErrors({
+					username: "Username already exists",
+				});
+			} else if (status.response.status === 401) {
 				formik.setErrors({
 					username: "Invalid username or password",
 					password: "Invalid username or password"
 				});
 			} else {
 				console.log(status)
-				// navigate("/");
+				navigate("/login");
 			}
 		},
 	});
@@ -46,7 +50,7 @@ export const Login = () => {
 						flexDirection: "column",
 						alignItems: "center",
 					}}>
-					Sign In
+					Register
 					<Box component="form" onSubmit={formik.handleSubmit} sx={{mt: 1}}>
 						<TextField
 							autoFocus

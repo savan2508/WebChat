@@ -1,7 +1,8 @@
 from django.conf import settings
-from rest_framework import viewsets
+from rest_framework import viewsets, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.views import APIView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from account.models import Account
@@ -10,7 +11,44 @@ from account.serializers import (
     AccountSerializer,
     CustomTokenObtainPariSerializer,
     JWTCookieTokenRefreshSerialized,
+    RegisterSerializer,
 )
+
+
+class RegisterView(APIView):
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
+        if serializer.is_valid():
+            username = serializer.validated_data["username"]
+
+            forbidden_usernames = ["admin", "moderator", "superuser", "root"]
+            if username in forbidden_usernames:
+                return Response(
+                    {"error": "This username is not allowed"},
+                    status=status.HTTP_409_CONFLICT,
+                )
+
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        errors = serializer.errors
+        if "username" in errors and "non_field_errors" not in errors:
+            return Response(
+                {"error": "This username is already taken"},
+                status=status.HTTP_409_CONFLICT,
+            )
+
+        return Response(errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LogOutAPIView(APIView):
+    def post(self, request, format=None):
+        response = Response("Logged out successfully")
+
+        response.set_cookie("refresh_token", "", expires=0)
+        response.set_cookie("access_token", "", expires=0)
+
+        return response
 
 
 class AccountViewSet(viewsets.ViewSet):
@@ -43,9 +81,7 @@ class JWTSetCookieMixin:
                 httponly=True,
                 samesite=settings.SIMPLE_JWT["JWT_COOKIE_SAMESITE"],
             )
-            # user_id = request.user.id
-            # response.data["user_id"] = user_id
-            # del response.data["access"]
+            del response.data["access"]
 
         return super().finalize_response(request, response, *args, **kwargs)
 

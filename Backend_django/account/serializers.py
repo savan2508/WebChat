@@ -3,12 +3,31 @@ from rest_framework import serializers
 from rest_framework_simplejwt.exceptions import InvalidToken
 from rest_framework_simplejwt.serializers import (
     TokenObtainPairSerializer,
-    AuthUser,
     TokenRefreshSerializer,
 )
-from rest_framework_simplejwt.tokens import Token
 
 from account.models import Account
+
+
+class RegisterSerializer(serializers.Serializer):
+    class Meta:
+        model = Account
+        fields = ("username", "password")
+
+    def is_valid(self, *, raise_exception=False):
+        valid = super().is_valid(raise_exception=raise_exception)
+
+        if valid:
+            username = self.validated_data["username"]
+            if Account.objects.filter(username=username).exists():
+                self.errors["username"] = ["Username already exists"]
+                valid = False
+
+        return valid
+
+    def create(self, validated_data):
+        user = Account.objects.create_user(**validated_data)
+        return user
 
 
 class AccountSerializer(serializers.ModelSerializer):
@@ -18,7 +37,7 @@ class AccountSerializer(serializers.ModelSerializer):
 
 
 class CustomTokenObtainPariSerializer(TokenObtainPairSerializer):
-    def get_token(cls, user: AuthUser) -> Token:
+    def get_token(cls, user):
         token = super().get_token(user)
         token["user_id"] = user.id
 

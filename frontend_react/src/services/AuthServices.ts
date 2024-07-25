@@ -42,14 +42,17 @@ export function useAuthService(): AuthServiceProps {
 					password: password,
 				},
 			);
-			const userId = response.data.user_id;
-			localStorage.setItem("userId", userId);
-			localStorage.setItem("isLoggedIn", "true");
+			console.log(response);
+			if (response?.status === 200) {
+				const userId = response.data.user_id;
+				localStorage.setItem("userId", userId);
+				localStorage.setItem("isLoggedIn", "true");
+				console.log("Logged in");
 
-			setIsLoggedIn(true);
+				setIsLoggedIn(true);
 
-			getUserDetails();
-
+				getUserDetails();
+			}
 		} catch (error: any) {
 			return error;
 		}
@@ -65,13 +68,36 @@ export function useAuthService(): AuthServiceProps {
 		}
 	}
 
-	const logout = () => {
+	const logout = async () => {
 		localStorage.setItem("isLoggedIn", "false");
 		localStorage.removeItem("userId");
 		localStorage.removeItem("username");
 		setIsLoggedIn(false);
+		try {
+			await axios.post(
+				`${BASE_URL}/logout/`, {}, {withCredentials: true}
+			)
+		} catch (refreshError: any) {
+			return Promise.reject(refreshError);
+		}
 		navigate("/login");
 	}
 
-	return {login, isLoggedIn, logout, refreshAccessToken};
+	const register = async (username: string, password: string) => {
+		try {
+			const response = await axios.post(
+				"http://127.0.0.1:8000/api/register/", {
+					username: username,
+					password: password,
+				},
+			);
+			console.log(response);
+			return response.status;
+		} catch (error: any) {
+			return error.response.status;
+		}
+	}
+
+
+	return {login, isLoggedIn, logout, refreshAccessToken, register};
 }

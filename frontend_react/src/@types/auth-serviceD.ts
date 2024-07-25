@@ -3,6 +3,7 @@ export interface AuthServiceProps {
 	isLoggedIn: boolean;
 	logout: () => void;
 	refreshAccessToken: () => Promise<void>;
+	register: (email: string, password: string) => Promise<any>;
 	// register: (email: string, password: string) => void;
 	// isAuthenticated: boolean;
 	// isLoading: boolean;

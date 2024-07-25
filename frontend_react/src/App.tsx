@@ -9,6 +9,7 @@ import {Server} from "./pages/Server.tsx";
 import {Login} from "./pages/Login.tsx";
 import {AuthServiceProvider} from "./context/AuthContext.tsx";
 import {ProtectedRoute} from "./services/ProtectedRoute.tsx";
+import {Register} from "./pages/Register.tsx";
 
 
 const App: React.FC = () => {
@@ -25,6 +26,7 @@ const App: React.FC = () => {
 						}/>
 						<Route path="/explore/:categoryName" element={<Explore/>}/>
 						<Route path="/login" element={<Login/>}/>
+						<Route path="/register" element={<Register/>}/>
 						<Route path="/testlogin" element={
 							<ProtectedRoute>
 								<h1>Test Login</h1>

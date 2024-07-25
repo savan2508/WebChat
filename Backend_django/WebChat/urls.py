@@ -9,6 +9,8 @@ from account.views import (
     AccountViewSet,
     JWTCookieTokenRefreshView,
     JWTCookieTokenObtainPairView,
+    LogOutAPIView,
+    RegisterView,
 )
 from chat_server.consumer import WebChatConsumer
 from chat_server.views import MessageViewSet
@@ -34,6 +36,8 @@ urlpatterns = [
     path(
         "api/token/refresh/", JWTCookieTokenRefreshView.as_view(), name="token_refresh"
     ),
+    path("api/logout/", LogOutAPIView.as_view(), name="logout"),
+    path("api/register/", RegisterView.as_view(), name="register"),
 ] + router.urls
 
 websockets_urlpatterns = [
